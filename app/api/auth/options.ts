@@ -12,7 +12,10 @@ const options: NextAuthOptions = {
       clientId: process.env.GOOGLE_CLIENT,
       clientSecret: process.env.GOOGLE_SECRET
     })
-  ]
+  ],
+  session: {
+    strategy: "jwt"
+  }
 };
 
 export default options;
