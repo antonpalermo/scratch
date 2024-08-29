@@ -12,7 +12,7 @@ export default function Navbar() {
     <nav
       className={cn(
         "sticky top-0 w-full px-5 md:px-10",
-        scrolled && "border-b shadow"
+        scrolled && "border-b shadow bg-white bg-opacity-90"
       )}
     >
       <div className="max-w-6xl mx-auto flex flex-row py-5 justify-between items-center">
