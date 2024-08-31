@@ -2,6 +2,7 @@ import React from "react";
 import Landing from "./_components/landing";
 import Colaborate from "./_components/colaborate";
 import Planning from "./_components/Planing";
+import Footer from "./_components/footer";
 
 export default function PromotionPage() {
   return (
@@ -10,6 +11,9 @@ export default function PromotionPage() {
         <Landing />
         <Colaborate />
         <Planning />
+      </div>
+      <div>
+        <Footer />
       </div>
     </div>
   );

@@ -1,9 +1,12 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
-import useScrollTop from "@/hooks/use-scroll-top";
-import { cn } from "@/lib/utils";
 import Image from "next/image";
+import { signIn } from "next-auth/react";
+
+import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+
+import useScrollTop from "@/hooks/use-scroll-top";
 
 export default function Navbar() {
   const scrolled = useScrollTop();
@@ -18,7 +21,12 @@ export default function Navbar() {
       <div className="max-w-6xl mx-auto flex flex-row py-5 justify-between items-center">
         <Image width={100} height={80} src="/scratch-dark.svg" alt="logo" />
         <div className="space-x-3">
-          <Button variant="ghost">Sign In</Button>
+          <Button
+            variant="ghost"
+            onClick={() => signIn(undefined, { callbackUrl: "/dashboard" })}
+          >
+            Sign In
+          </Button>
           <Button>Request a demo</Button>
         </div>
       </div>
