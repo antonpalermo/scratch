@@ -10,12 +10,12 @@ type Item = {
 export default function Sidenav() {
   const items: Item[] = [
     {
-      href: "#",
+      href: "/dashboard",
       label: "Dashboard",
       icon: "layout-dashboard"
     },
     {
-      href: "#",
+      href: "/drafts",
       label: "Drafts",
       icon: "drafting-compass"
     }

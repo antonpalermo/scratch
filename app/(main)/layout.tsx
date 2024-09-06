@@ -1,13 +1,13 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import Sidenav from "./dashboard/_components/sidenav";
+import Sidenav from "./_components/sidenav";
 
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetTrigger, SheetContent } from "@/components/ui/sheet";
 import { Menu, Search } from "lucide-react";
 import { Input } from "@/components/ui/input";
-import UserMenu from "./dashboard/_components/user-menu";
+import UserMenu from "./_components/user-menu";
 
 export type MainLayoutProps = {
   children: React.ReactNode;
