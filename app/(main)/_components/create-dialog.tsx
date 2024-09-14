@@ -1,23 +1,21 @@
 "use client";
 
+import { useState } from "react";
+import { Loader2 } from "lucide-react";
+import { useFormStatus } from "react-dom";
+
 import {
   Dialog,
   DialogTitle,
-  DialogFooter,
   DialogHeader,
   DialogContent,
   DialogTrigger,
   DialogDescription
 } from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
-import { Textarea } from "@/components/ui/textarea";
-
 import { create } from "@/app/(main)/_actions/create-note";
-import { useFormStatus } from "react-dom";
-import { Loader2 } from "lucide-react";
-import { useState } from "react";
+
+import NoteForm from "./note-form";
 
 function CreateNoteSubmitButton() {
   const { pending } = useFormStatus();
@@ -30,7 +28,7 @@ function CreateNoteSubmitButton() {
   );
 }
 
-export default function CreateNote() {
+export default function CreateNoteDialog() {
   const [open, setOpen] = useState(false);
 
   async function createNote(formData: FormData) {
@@ -50,26 +48,7 @@ export default function CreateNote() {
             Give your note awesome name to make it pop!
           </DialogDescription>
         </DialogHeader>
-        <form id="create-form" action={createNote}>
-          <div className="grid gap-4 py-4">
-            <div className="space-y-2">
-              <Label htmlFor="name" className="text-right">
-                Name
-              </Label>
-              <Input id="name" name="name" />
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="description" className="text-right">
-                Description
-              </Label>
-              <Textarea id="description" name="description" />
-            </div>
-          </div>
-          <div className="w-full space-x-3 inline-flex items-center justify-end">
-            <Button variant="ghost">Cancel</Button>
-            <CreateNoteSubmitButton />
-          </div>
-        </form>
+        <NoteForm />
       </DialogContent>
     </Dialog>
   );

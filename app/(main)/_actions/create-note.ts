@@ -1,28 +1,26 @@
 "use server";
 
-import { z } from "zod";
+import { z, ZodError } from "zod";
 
 import prisma from "@/lib/prisma";
-
-const noteInputSchema = z.object({
-  name: z.string().min(1),
-  description: z.optional(z.string())
-});
+import noteSchema from "./note-schema";
 
 export async function create(formData: FormData) {
-  const data: z.infer<typeof noteInputSchema> = {
-    name: formData.get("name") as string,
-    description: formData.get("description") as string
-  };
-
-  const sanitizedData = noteInputSchema.parse(data);
+  const noteDetails = Object.fromEntries(formData);
 
   try {
+    const data = noteSchema.parse(noteDetails);
+
     await prisma.notes.create({
-      data: sanitizedData
+      data
     });
   } catch (error) {
-    console.log(error);
+    if (error instanceof ZodError) {
+      console.log("zod error: ", error);
+
+      throw error;
+    }
+
     throw error;
   }
 }
