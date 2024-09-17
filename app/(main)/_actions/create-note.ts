@@ -4,6 +4,7 @@ import { z, ZodError } from "zod";
 
 import prisma from "@/lib/prisma";
 import noteSchema from "./note-schema";
+import { revalidatePath } from "next/cache";
 
 export type FormState = {
   success: boolean;
@@ -36,6 +37,9 @@ export default async function createNote(
     await prisma.notes.create({
       data
     });
+
+    revalidatePath("/dashboard");
+
     return { success: true, message: "Notes successfully created" };
   } catch (error) {
     throw error;
