@@ -1,5 +1,6 @@
 import prisma from "@/lib/prisma";
 import { notFound } from "next/navigation";
+import CreateLeafDialog from "../../_components/create-dialog";
 
 export type NotePageProps = {
   params: { id: string };
@@ -12,5 +13,10 @@ export default async function NotePage({ params: { id } }: NotePageProps) {
     return notFound();
   }
 
-  return <div>{JSON.stringify(note)}</div>;
+  return (
+    <div>
+      {JSON.stringify(note)}
+      <CreateLeafDialog />
+    </div>
+  );
 }
