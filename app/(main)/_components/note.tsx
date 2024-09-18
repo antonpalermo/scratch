@@ -27,9 +27,9 @@ export default function Note({
     <Card>
       <div className="min-h-[290px] relative">
         <Image
+          className="object-cover"
           src={"https://ui.shadcn.com/placeholder.svg"}
           alt="placeholder"
-          objectFit="cover"
           fill
         />
       </div>
