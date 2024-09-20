@@ -63,7 +63,7 @@ export default function LeafForm() {
                   <FormMessage />
                 </div>
                 <FormControl>
-                  <Input placeholder="Untitled leaf" {...field} />
+                  <Input placeholder="Untitled" {...field} />
                 </FormControl>
                 <FormDescription>You can change this later</FormDescription>
               </FormItem>
@@ -78,7 +78,7 @@ export default function LeafForm() {
           </DialogClose>
           <Button type="submit">
             {pending && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-            {pending ? "Creating" : "Create note"}
+            {pending ? "Creating" : "Create"}
           </Button>
         </div>
       </form>
