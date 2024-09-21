@@ -7,6 +7,16 @@ import { redirect } from "next/navigation";
 export async function GET(req: Request) {
   const session = await getServerSession(options);
 
+  if (!session) {
+    return NextResponse.json(
+      {
+        success: false,
+        message: "You do not have enough rights to access this resource"
+      },
+      { status: 401 }
+    );
+  }
+
   try {
     const notes = await prisma.notes.findMany({
       where: {
