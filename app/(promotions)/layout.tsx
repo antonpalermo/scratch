@@ -9,7 +9,7 @@ export default function PromotionLayout({ children }: PromotionLayoutProps) {
   return (
     <main>
       <Navbar />
-      <div>{children}</div>
+      {children}
     </main>
   );
 }
