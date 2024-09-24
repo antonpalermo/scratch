@@ -2,9 +2,18 @@ import CreateNoteDialog from "@/app/(main)/_components/create-dialog";
 import Shell from "@/components/shell";
 import prisma from "@/lib/prisma";
 import Note from "../_components/note";
+import { getServerSession } from "next-auth";
+import options from "@/app/api/auth/options";
 
 export default async function Dashboard() {
-  const notes = await prisma.notes.findMany();
+  const session = await getServerSession(options);
+  const notes = await prisma.notes.findMany({
+    where: {
+      owner: {
+        email: session?.user?.email!
+      }
+    }
+  });
 
   return (
     <Shell>
