@@ -5,6 +5,8 @@ import { z, ZodError } from "zod";
 import prisma from "@/lib/prisma";
 import noteSchema from "./note-schema";
 import { revalidatePath } from "next/cache";
+import { getServerSession } from "next-auth";
+import options from "@/app/api/auth/options";
 
 export type FormState = {
   success: boolean;
@@ -21,6 +23,8 @@ export default async function createNote(
   prevState: FormState,
   formData: FormData
 ): Promise<FormState> {
+  const session = await getServerSession(options);
+
   const noteDetails = Object.fromEntries(formData);
   const { data, success, error } = noteSchema.safeParse(noteDetails);
 
@@ -35,7 +39,12 @@ export default async function createNote(
 
   try {
     await prisma.notes.create({
-      data
+      data: {
+        ...data,
+        owner: {
+          connect: { email: session?.user?.email! }
+        }
+      }
     });
 
     revalidatePath("/dashboard");
