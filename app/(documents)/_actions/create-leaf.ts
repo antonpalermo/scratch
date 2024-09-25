@@ -1,9 +1,10 @@
 "use server";
 
 import { ZodError, z } from "zod";
-import leafSchema from "./leaf-schema";
-import prisma from "@/lib/prisma";
 import { revalidatePath } from "next/cache";
+
+import prisma from "@/lib/prisma";
+import leafSchema from "./leaf-schema";
 
 export type FormState = {
   success: boolean;
@@ -34,7 +35,7 @@ export default async function createLeaf(
 
   try {
     await prisma.leafs.create({
-      data: { title: data.name }
+      data: { title: data.name, content: {} }
     });
 
     revalidatePath("/notes");
