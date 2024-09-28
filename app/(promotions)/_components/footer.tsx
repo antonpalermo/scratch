@@ -35,7 +35,7 @@ export default function Footer() {
         </div>
       </div>
       <div className="container py-4 text-center text-sm text-muted-foreground">
-        © {new Date().getFullYear()} Acme Inc. All rights reserved.
+        © {new Date().getFullYear()} effectiveCoding Inc. All rights reserved.
       </div>
     </footer>
   );
