@@ -34,8 +34,13 @@ export default async function createLeaf(
   }
 
   try {
+    console.log("note:", noteDetails);
     await prisma.leafs.create({
-      data: { title: data.name, content: {} }
+      data: {
+        title: data.name,
+        content: {},
+        note: { connect: { id: data.noteId } }
+      }
     });
 
     revalidatePath("/notes");

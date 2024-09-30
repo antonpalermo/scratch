@@ -23,8 +23,10 @@ import { DialogClose } from "@/components/ui/dialog";
 
 import leafSchema from "../_actions/leaf-schema";
 import createLeaf from "../_actions/create-leaf";
+import { usePathname } from "next/navigation";
 
 export default function LeafForm() {
+  const pathname = usePathname();
   const { pending } = useFormStatus();
   const [state, formAction] = useFormState(createLeaf, {
     success: false,
@@ -34,7 +36,8 @@ export default function LeafForm() {
   const form = useForm<z.output<typeof leafSchema>>({
     resolver: zodResolver(leafSchema),
     defaultValues: {
-      name: ""
+      name: "",
+      noteId: pathname.split("/")[2]
     }
   });
 
@@ -69,8 +72,13 @@ export default function LeafForm() {
               </FormItem>
             )}
           />
+          <FormField
+            control={form.control}
+            name="noteId"
+            render={({ field }) => <Input {...field} className="hidden"/>}
+          />
         </div>
-        <div className="w-full space-x-3 inline-flex items-center justify-end">
+        <div className="inline-flex w-full items-center justify-end space-x-3">
           <DialogClose asChild>
             <Button type="button" variant="ghost">
               Cancel
