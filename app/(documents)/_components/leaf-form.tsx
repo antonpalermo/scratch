@@ -22,14 +22,14 @@ import { Button } from "@/components/ui/button";
 import { DialogClose } from "@/components/ui/dialog";
 
 import leafSchema from "../_actions/leaf-schema";
-// import createNote from "../_actions/create-note";
+import createLeaf from "../_actions/create-leaf";
 
 export default function LeafForm() {
   const { pending } = useFormStatus();
-  // const [state, formAction] = useFormState(createNote, {
-  //   success: false,
-  //   message: ""
-  // });
+  const [state, formAction] = useFormState(createLeaf, {
+    success: false,
+    message: ""
+  });
 
   const form = useForm<z.output<typeof leafSchema>>({
     resolver: zodResolver(leafSchema),
@@ -44,13 +44,13 @@ export default function LeafForm() {
     <Form {...form}>
       <form
         ref={noteFormRef}
-        // action={formAction}
-        // onSubmit={e => {
-        //   e.preventDefault();
-        //   form.handleSubmit(() => {
-        //     formAction(new FormData(noteFormRef.current!));
-        //   })(e);
-        // }}
+        action={formAction}
+        onSubmit={e => {
+          e.preventDefault();
+          form.handleSubmit(() => {
+            formAction(new FormData(noteFormRef.current!));
+          })(e);
+        }}
       >
         <div className="grid gap-4 py-4">
           <FormField
