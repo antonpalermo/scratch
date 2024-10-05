@@ -21,8 +21,8 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { DialogClose } from "@/components/ui/dialog";
 
-import leafSchema from "../_actions/leaf-schema";
-import createLeaf from "../_actions/create-leaf";
+import leafSchema from "../../(main)/_actions/leaf-schema";
+import createLeaf from "../../(main)/_actions/create-leaf";
 import { usePathname } from "next/navigation";
 
 export default function LeafForm() {

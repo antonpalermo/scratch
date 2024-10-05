@@ -20,11 +20,11 @@ model User {
   email         String          @unique
   emailVerified DateTime?
   image         String?
-  notes         Notes[]
+  pages         Pages[]
   accounts      Account[]
   sessions      Session[]
   // Optional for WebAuthn support
-  Authenticator Authenticator[]
+  authenticator Authenticator[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -32,36 +32,20 @@ model User {
   @@map("users")
 }
 
-model Notes {
-  id          String  @id @default(cuid())
-  name        String
-  description String?
-  owner       User    @relation(fields: [ownerId], references: [id])
-  ownerId     String
-
-  leafs Leafs[]
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  @@map("notes")
-}
-
-model Leafs {
-  id         String  @id @default(cuid())
-  title      String  @default("Untitled")
-  content    Json?
-  parent     Leafs?  @relation("childLeaf", fields: [parentId], references: [id])
-  parentId   String?
-  childLeafs Leafs[] @relation("childLeaf")
-
-  note   Notes?  @relation(fields: [noteId], references: [id])
-  noteId String?
+model Pages {
+  id       String  @id @default(cuid())
+  title    String  @default("Untitled")
+  content  Json?
+  owner    User    @relation(fields: [ownerId], references: [id])
+  ownerId  String
+  parent   Pages?  @relation("page_child_relation", fields: [parentId], references: [id])
+  parentId String?
+  children Pages[] @relation("page_child_relation")
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  @@map("leafs")
+  @@map("pages")
 }
 
 model Account {
