@@ -48,9 +48,12 @@ model Notes {
 }
 
 model Leafs {
-  id      String @id @default(cuid())
-  title   String
-  content Json?
+  id         String  @id @default(cuid())
+  title      String  @default("Untitled")
+  content    Json?
+  parent     Leafs?  @relation("childLeaf", fields: [parentId], references: [id])
+  parentId   String?
+  childLeafs Leafs[] @relation("childLeaf")
 
   note   Notes?  @relation(fields: [noteId], references: [id])
   noteId String?
