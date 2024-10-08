@@ -47,7 +47,7 @@ export default async function createNote(
       }
     });
 
-    revalidatePath("/dashboard");
+    revalidatePath("/home");
 
     return { success: true, message: "Notes successfully created" };
   } catch (error) {

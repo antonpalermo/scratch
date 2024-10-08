@@ -23,7 +23,7 @@ export default function Navbar() {
         <div className="space-x-3">
           <Button
             variant="ghost"
-            onClick={() => signIn(undefined, { callbackUrl: "/dashboard" })}
+            onClick={() => signIn(undefined, { callbackUrl: "/home" })}
           >
             Sign In
           </Button>

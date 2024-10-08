@@ -5,7 +5,8 @@ export const config = {
     /**
      * dashboard routes
      */
-    "/dashboard/:path*",
+    "/home/:path*",
+    "/:path*"
     /*
      * Match all request paths except for the ones starting with:
      * - api (API routes)

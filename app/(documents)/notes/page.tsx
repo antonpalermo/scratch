@@ -1,5 +1,5 @@
 import { redirect } from "next/navigation";
 
 export default async function NotesPage() {
-  return redirect("/dashboard");
+  return redirect("/home");
 }
