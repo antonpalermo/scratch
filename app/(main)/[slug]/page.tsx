@@ -1,5 +1,5 @@
 import prisma from "@/lib/prisma";
-import Editor from "@/app/(documents)/_components/editor";
+import Editor from "@/components/editor";
 
 import { notFound } from "next/navigation";
 
