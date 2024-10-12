@@ -20,8 +20,8 @@ export default async function Sidenav() {
     },
     {
       href: "#",
-      label: "Search",
-      icon: "search"
+      label: "Explore",
+      icon: "compass"
     },
     {
       href: "#",
