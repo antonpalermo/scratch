@@ -3,7 +3,7 @@ import { getServerSession } from "next-auth";
 
 import prisma from "@/lib/prisma";
 
-export async function POST(req: Request) {
+export async function GET(req: Request) {
   const session = await getServerSession();
 
   if (!session) {
@@ -13,24 +13,16 @@ export async function POST(req: Request) {
     );
   }
 
-  // TODO: add schema validation here.
-
   try {
-    const page = await prisma.pages.create({
-      data: {
-        title: "Untitled",
-        owner: { connect: { email: session.user?.email! } }
-      }
+    const pages = await prisma.pages.findMany({
+      where: { owner: { email: session.user?.email! } }
     });
 
-    return NextResponse.json(
-      {
-        data: page,
-        message: "Blank page successfully created",
-        isSuccess: true
-      },
-      { status: 201 }
-    );
+    return NextResponse.json({
+      data: pages,
+      message: "Fetched all available page.",
+      isSuccess: true
+    });
   } catch (error) {
     return NextResponse.json({
       data: null,
