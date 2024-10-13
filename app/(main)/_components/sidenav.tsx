@@ -3,6 +3,9 @@ import SidenavItem from "./sidenav-item";
 import prisma from "@/lib/prisma";
 import { getServerSession } from "next-auth";
 import options from "@/app/api/auth/options";
+import { Button } from "@/components/ui/button";
+import Icon from "@/components/icon";
+import CreatePage from "@/app/(main)/_components/CreatePage";
 
 type Item = {
   href: string;
@@ -33,11 +36,6 @@ export default async function Sidenav() {
       href: "#",
       label: "Archives",
       icon: "archive"
-    },
-    {
-      href: "#",
-      label: "New blank page",
-      icon: "file"
     }
   ];
 
@@ -52,6 +50,7 @@ export default async function Sidenav() {
             icon={item.icon}
           />
         ))}
+        <CreatePage />
       </div>
       <div>
         <span className="mb-2 block px-3 text-sm font-semibold text-muted-foreground">
