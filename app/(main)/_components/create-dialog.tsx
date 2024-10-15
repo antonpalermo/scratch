@@ -10,8 +10,6 @@ import {
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 
-import NoteForm from "@/app/(main)/_components/note-form";
-
 export default function CreateNoteDialog() {
   return (
     <Dialog>
@@ -25,7 +23,6 @@ export default function CreateNoteDialog() {
             Give your note awesome name to make it pop!
           </DialogDescription>
         </DialogHeader>
-        <NoteForm />
       </DialogContent>
     </Dialog>
   );
