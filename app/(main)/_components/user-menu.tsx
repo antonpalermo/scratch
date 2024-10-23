@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { getServerSession } from "next-auth";
+import { auth } from "@/app/api/auth/auth";
 import {
   DropdownMenu,
   DropdownMenuItem,
@@ -11,7 +11,7 @@ import {
 import { Button } from "@/components/ui/button";
 
 export default async function UserMenu() {
-  const session = await getServerSession();
+  const session = await auth();
 
   return (
     <DropdownMenu>

@@ -1,6 +1,6 @@
 import React from "react";
 import { redirect } from "next/navigation";
-import { getServerSession } from "next-auth";
+import { auth } from "@/app/api/auth/auth";
 
 import Hero from "./_components/hero";
 import Footer from "./_components/footer";
@@ -12,7 +12,7 @@ import CallToActionSignUp from "./_components/call-to-action";
 import options from "@/app/api/auth/options";
 
 export default async function PromotionPage() {
-  const session = await getServerSession(options);
+  const session = await auth();
 
   if (session) {
     return redirect("/home");

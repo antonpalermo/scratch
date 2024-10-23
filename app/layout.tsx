@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 import { Inter } from "next/font/google";
-import { getServerSession } from "next-auth";
+import { auth } from "@/app/api/auth/auth";
 
 import options from "@/app/api/auth/options";
 import SessionProvider from "@/components/providers/session";
@@ -20,7 +20,7 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const session = await getServerSession(options);
+  const session = await auth();
 
   return (
     <html lang="en">

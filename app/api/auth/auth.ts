@@ -1,9 +1,4 @@
-import NextAuth from "next-auth/next";
-import type { NextApiRequest, NextApiResponse } from "next";
-
+import NextAuth from "next-auth";
 import options from "@/app/api/auth/options";
 
-const handler = async (req: NextApiRequest, res: NextApiResponse) =>
-  await NextAuth(req, res, options);
-
-export default handler;
+export const { auth, handlers, signIn, signOut } = NextAuth(options);

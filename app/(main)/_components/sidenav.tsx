@@ -1,7 +1,7 @@
 import dynamicIconImports from "lucide-react/dynamicIconImports";
 import SidenavItem from "./sidenav-item";
 import prisma from "@/lib/prisma";
-import { getServerSession } from "next-auth";
+import { auth } from "@/app/api/auth/auth";
 import options from "@/app/api/auth/options";
 import { Button } from "@/components/ui/button";
 import Icon from "@/components/icon";
@@ -14,7 +14,7 @@ type Item = {
 };
 
 export default async function Sidenav() {
-  const session = await getServerSession(options);
+  const session = await auth();
   const pages = await prisma.pages.findMany({
     where: {
       owner: { email: session?.user?.email! }

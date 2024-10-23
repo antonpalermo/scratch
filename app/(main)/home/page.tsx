@@ -1,11 +1,11 @@
 import Shell from "@/components/shell";
 import options from "@/app/api/auth/options";
-import { getServerSession } from "next-auth";
+import { auth } from "@/app/api/auth/auth";
 
 import CreateNoteDialog from "@/app/(main)/_components/create-dialog";
 
 export default async function Dashboard() {
-  const session = await getServerSession(options);
+  const session = await auth();
 
   return (
     <Shell>
